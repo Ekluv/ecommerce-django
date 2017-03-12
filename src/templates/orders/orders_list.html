@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% for order in object_list %}
+	<p>{{order}}</p>
+{% endfor %}
+
+{% endblock %}

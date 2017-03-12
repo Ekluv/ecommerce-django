@@ -1,0 +1,7 @@
+<div class="row">
+	{% for product in object_list %}
+		<div class="col-xs-2">
+			{% include "products/product_thumbnail.html" with product=product %}
+		</div>
+	{% cycle '' '' '' '' '' '</div><hr/><div class="row">' %}
+	{% endfor %}

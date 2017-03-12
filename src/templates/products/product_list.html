@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+{% if object_list %}
+	{% include "products/products.html" with object_list=object_list%}
+{% endif %}
+
+{% endblock %}

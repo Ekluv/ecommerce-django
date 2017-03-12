@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block head_title %}Welcome | {{ block.super }}{% endblock %}
+<style>
+{% block style %}
+	.navbar-static-top {
+		margin-bottom: 0px !important;
+	}
+	.jumbotron {
+		background-color:#0E3D14;
+		color: #FFF;
+	}
+
+{% endblock %}
+</style>
+
+{% block jumbotron %}
+		{% if featured_image %}
+			<div class="jumbotron">
+				<div class="container">
+					<div class="row">
+						<div class='col-sm-6'>
+							<h1>{{featured_image.product.title}}</h1>
+							<p>{{featured_image.product.description}}</p>
+							<p>
+								<a class="btn btn-lg btn-primary" href="{{featured_image.product.get_absolute_url}}" role="button">More Details</a>
+							</p>
+						</div>
+						<div class='col-sm-6' >
+							<img src="{{featured_image.image.url}}" class="img-responsive">
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endif %}
+	{% endblock %}
+	
+
+	{% block content %}
+		{% if products %}
+			<h3> Recommended products </h3>
+			{% include "products/products.html" with object_list=products%}
+		{% endif %}
+
+	{% endblock %}

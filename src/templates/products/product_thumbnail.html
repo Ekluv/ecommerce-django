@@ -1,0 +1,9 @@
+<div class="thumbnail text-center">
+	{% if product.get_image_url %}
+		<a href="{{product.get_absolute_url}}"><img src="{{product.get_image_url}}" alt="..." class="img-responsive"></a>
+	{% endif %}
+	 <div class="caption">
+		<h3><a href="{{product.get_absolute_url}}">{{product.title}}</a></h3>
+	</div>
+	<span>{{product.variation_set.first.price}}</span>
+</div>

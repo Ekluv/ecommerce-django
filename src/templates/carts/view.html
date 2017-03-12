@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block jquery %}
+
+	function updateCart(item, qty, del){
+		var url = "{% url 'create_cart' %}" + '?' + 'item=' + item + '&qty=' + qty;
+		if(del === true){
+			url += '&delete=y';
+		}
+		return $.ajax({
+			url: url,
+			type: 'GET',
+		}).promise();
+	}
+
+	$('.update-cart').on('input', function(){
+		var qty = $(this).val();
+		if(!qty){
+		return ;
+		}
+		var item = $(this).data('item-id');
+		var self = $(this);
+		updateCart(item, qty).then(function(response){
+			console.log(response);
+			$('#cart-count-badge').text(response.cart_count);
+			self.parent().next().text('Rs '+ response.item_total);
+			$('#cart-price').text('Rs ' + response.cart_price);
+		});
+	});
+
+	$('.remove-item').click(function(event){
+		console.log($(this));
+		var item = $(this).data('item-id');
+		updateCart(item, 1, true).then(function(response){
+			window.location.reload();
+		});
+	});
+{% endblock %}
+
+
+{% block content %}
+
+<table class="table">
+{% for cart_item in object.cartitem_set.all %}
+	<tr>
+		<td>{{cart_item.item_name}}</td>
+		<td><input class="update-cart" data-item-id="{{cart_item.item.id}}" type="number" name="qty" min="1" value="{{cart_item.quantity}}"></td>
+		<td class="item-price">Rs {{cart_item.item_total}}</td>
+		<td class="text-right"><a href="javascript:void(0)" data-item-id="{{cart_item.item.id}}" class="remove-item">Remove</a></td>
+	</tr>
+{% endfor %}
+	<tr>
+		<td colspan="4" id="cart-price" class="text-right"> Rs {{object.cart_price}}<br>
+		<a href="{% url 'cart_checkout' %}">Checkout</a>
+		</td>
+	</tr>
+</table>
+
+{% endblock %}
