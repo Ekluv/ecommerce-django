@@ -1,4 +1,11 @@
+appdirs==1.4.3
 Django==1.8
 django-crispy-forms==1.4.0
 django-registration-redux==1.1
 djangorestframework==3.4.0
+gunicorn==19.7.0
+olefile==0.44
+packaging==16.8
+Pillow==4.0.0
+pyparsing==2.2.0
+six==1.10.0
