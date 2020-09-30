@@ -1,11 +1,11 @@
-# ecommerce-django
+# eCommerce-django
 Simple Ecommerce website built using Django
 
 
 https://ekluv.herokuapp.com/
 
 
-Checkout this repo, install dependencies, then start the server:
+Check out this repo, install dependencies, then start the server:
 
     > git clone https://github.com/Ekluv/ecommerce-django.git
     > cd ecommerce-django
